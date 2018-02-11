@@ -1,0 +1,10 @@
+SpringBootRestService
+-----------------------------
+1.Unzip the Zip file
+2.From the command Line move to SpringBootRestService directory and build the Project.
+3.Build Command: mvn clean install eclipse:clean eclipse:eclipse -Dwtpversion=2.0
+4.Deploy and Run the application Using tomcat7-maven-plugin with command mvn tomcat7:run-war.
+5.Check the REST API with POSTMAN REST Client 
+Example1:http://localhost:9999/SpringBootRestService/change/optimal?pence=576
+Example2:http://localhost:9999/SpringBootRestService/change/supply?pence=576
+6.Source: Java8
