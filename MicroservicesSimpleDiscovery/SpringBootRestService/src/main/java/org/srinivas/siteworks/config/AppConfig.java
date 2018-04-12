@@ -5,15 +5,20 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.web.client.RestTemplate;
+
 
 
 
 
 @ComponentScan(basePackages = { "org.srinivas.siteworks" })
 @SpringBootApplication
+@EnableDiscoveryClient
 public class AppConfig extends SpringBootServletInitializer {
 
 	/**
@@ -27,6 +32,7 @@ public class AppConfig extends SpringBootServletInitializer {
 		c.setIgnoreUnresolvablePlaceholders(true);
 		return c;
 	}
+	
 	
 	/* (non-Javadoc)
 	 * @see org.springframework.boot.web.support.SpringBootServletInitializer#configure(org.springframework.boot.builder.SpringApplicationBuilder)

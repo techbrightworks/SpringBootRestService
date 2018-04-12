@@ -1,0 +1,28 @@
+MicroservicesSimpleDiscovery
+-----------------------------
+1.From the command Line move to each of the Folder  and build the each Project.
+2.Build Command: mvn clean install eclipse:clean eclipse:eclipse -Dwtpversion=2.0
+3.Most common way to Run each of the Project with mvn spring-boot:run , the current application.yml in all the projects is provided for this run.
+4:Now it is time to check the urls:
+ServiceDiscovery:http://localhost:1111/    ---> Here check both the below application are registered
+SpringBootRestClient:http://localhost:3333/call/optimal?pence=576
+SpringBootRestService:http://localhost:2222/change/optimal?pence=576
+
+------------------------------------------------------------------------------------------------
+Now you are still inquisitive and want to run all three applications on Tomcat: 
+1.Suppose say you want to run  each of the project with Tomcat using tomcat7-maven-plugin with command mvn tomcat7:run-war.
+then these simple changes below would help
+In the application.yml of ServiceDiscovery change the hostname to localhost/ServiceDiscovery
+In the application.yml of SpringBootRestService and SpringBootRestService  change the Discovery Server Access as below
+# Discovery Server Access
+eureka:
+    client:
+      serviceUrl:
+        defaultZone: http://localhost:1111/ServiceDiscovery/eureka/
+Also have to add "/SpringBootRestService" to the exisiting 	path provided in the ChangeClientServiceImpl of SpringBootRestClient.	
+2.Then urls to check would be:
+ServiceDiscovery:http://localhost:1111/ServiceDiscovery/
+SpringBootRestClient:http://localhost:3333/SpringBootRestClient/call/optimal?pence=357
+SpringBootRestService:http://localhost:2222/SpringBootRestService/change/optimal?pence=576
+
+ 

@@ -1,0 +1,54 @@
+package org.srinivas.siteworks.config;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.web.client.RestTemplate;
+
+@ComponentScan(basePackages = { "org.srinivas.siteworks" })
+@SpringBootApplication
+@EnableDiscoveryClient
+public class AppConfig extends SpringBootServletInitializer {
+
+	public static final String REST_SERVICE_URL = "http://SPRINGBOOTRESTSERVICE";
+
+	/**
+	 * Place holder configurer.
+	 *
+	 * @return the property sources placeholder configurer
+	 */
+	@Bean
+	public static PropertySourcesPlaceholderConfigurer placeHolderConfigurer() {
+		PropertySourcesPlaceholderConfigurer c = new PropertySourcesPlaceholderConfigurer();
+		c.setIgnoreUnresolvablePlaceholders(true);
+		return c;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.springframework.boot.web.support.SpringBootServletInitializer#
+	 * configure(org.springframework.boot.builder.SpringApplicationBuilder)
+	 */
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+		return application.sources(AppConfig.class);
+	}
+
+	@Bean
+	@LoadBalanced
+	public RestTemplate restTemplate() {
+		return new RestTemplate();
+	}
+
+	public static void main(String[] args) {
+		SpringApplication.run(AppConfig.class, args);
+	}
+
+}
