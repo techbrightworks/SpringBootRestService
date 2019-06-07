@@ -1,64 +1,38 @@
 package org.srinivas.siteworks.denomination;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Coin {
-	
 
-	private String name;
-	private Integer value;
-	private Integer count;
 
-	/**
-	 * Gets the value.
-	 *
-	 * @return the value
-	 */
-	public Integer getValue() {
-		return value;
-	}
+    private String name;
+    private Integer value;
+    private Integer count;
 
-	/**
-	 * Sets the value.
-	 *
-	 * @param value the new value
-	 */
-	public void setValue(Integer value) {
-		this.value = value;
-	}
 
-	/**
-	 * Gets the count.
-	 *
-	 * @return the count
-	 */
-	public Integer getCount() {
-		return count;
-	}
+    public Integer getValue() {
+        return value;
+    }
 
-	/**
-	 * Sets the count.
-	 *
-	 * @param count the new count
-	 */
-	public void setCount(Integer count) {
-		this.count = count;
-	}
+    public void setValue(Integer value) {
+        this.value = value;
+    }
 
-	/**
-	 * Gets the name.
-	 *
-	 * @return the name
-	 */
-	public String getName() {
-		return name;
-	}
+    public Integer getCount() {
+        return count;
+    }
 
-	/**
-	 * Sets the name.
-	 *
-	 * @param name the new name
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setCount(Integer count) {
+        this.count = count;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
 }
